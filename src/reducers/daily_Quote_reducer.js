@@ -1,8 +1,8 @@
 import { FETCH_DAILY_QUOTE } from "../actions/daily_quote_action";
+import quotesList from "../data";
 
 const initialState = {
-  quote: [],
-  loaded: false,
+  quote: quotesList(),
 };
 
 const dailyQuoteReducer = (state = initialState, action) => {
@@ -11,7 +11,6 @@ const dailyQuoteReducer = (state = initialState, action) => {
       return {
         ...state,
         quote: action.payload,
-        loaded: true,
       };
     default:
       return state;
