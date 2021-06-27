@@ -1,8 +1,16 @@
-import { FETCH_DAILY_QUOTE } from "../actions/daily_quote_action";
+import {
+  FETCH_DAILY_QUOTE,
+  FETCH_RATING_QUOTE,
+} from "../actions/daily_quote_action";
 import quotesList from "../data";
+import ratingQuotes from "../rating_data";
 
 const initialState = {
-  quote: quotesList(),
+  quotes: quotesList(),
+  ratingQuotes: ratingQuotes(),
+  randomQuote: [],
+  ratingQuote: [],
+  ratingLoaded: false,
 };
 
 const dailyQuoteReducer = (state = initialState, action) => {
@@ -10,7 +18,13 @@ const dailyQuoteReducer = (state = initialState, action) => {
     case FETCH_DAILY_QUOTE:
       return {
         ...state,
-        quote: action.payload,
+        randomQuote: action.payload,
+      };
+    case FETCH_RATING_QUOTE:
+      return {
+        ...state,
+        ratingQuote: action.payload,
+        ratingLoaded: true,
       };
     default:
       return state;

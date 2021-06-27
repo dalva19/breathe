@@ -1,22 +1,22 @@
 import "./App.css";
-import React, { useEffect } from "react";
-//redux
-import { useDispatch } from "react-redux";
-import { loadDailyQuote } from "./actions/daily_quote_action";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Home from "./components/Home";
+import RatingQuote from "./components/RatingQuote";
+import DogPic from "./components/DogPic";
 
-function App() {
-  const dispatch = useDispatch();
-
-  const handleTestClick = () => {
-    dispatch(loadDailyQuote());
-  };
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello Breathe!</h1>
-      <button onClick={handleTestClick}>Test</button>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+
+      <Route path="/breathe">
+        <RatingQuote />
+        <DogPic />
+      </Route>
+    </Switch>
   );
-}
+};
 
 export default App;
