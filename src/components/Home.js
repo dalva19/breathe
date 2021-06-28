@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadDailyQuote, loadRatingQuote } from "../actions/daily_quote_action";
 import { loadRandomDog } from "../actions/dog_action";
 import { Link } from "react-router-dom";
+//style
+import styled from "styled-components";
 
 const Home = () => {
   //redux
@@ -26,10 +28,14 @@ const Home = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Breathe</h1>
-      <p>{randomQuote.q}</p>
-      <p>-{randomQuote.a}</p>
+    <div>
+      <StyledHeader>
+        <h1>Breathe</h1>
+      </StyledHeader>
+      <div className="daily-quote">
+        <p>{randomQuote.q}</p>
+        <p>-{randomQuote.a}</p>
+      </div>
       <input
         type="text"
         placeholder="Rate your day from 0-10"
@@ -44,5 +50,15 @@ const Home = () => {
     </div>
   );
 };
+
+const StyledHeader = styled.div`
+  min-height: 15vh;
+  background-color: black;
+  color: white;
+  font-family: "Lobster", cursive;
+  width: 100%;
+  text-align: center;
+  padding-top: 1.5rem;
+`;
 
 export default Home;
