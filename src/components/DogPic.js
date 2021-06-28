@@ -16,8 +16,8 @@ const DogPic = () => {
 const StyledDogPic = styled.div`
   text-align: center;
   img {
-    width: 40%;
-    height: 20%
+    width: 350px;
+    height: 350px;
     object-fit: cover;
     border-radius: 50%;
     margin-top: 2rem;
