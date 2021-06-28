@@ -15,7 +15,6 @@ const App = () => {
 
         <Route path="/breathe">
           <RatingQuote />
-          <DogPic />
         </Route>
       </Switch>
     </div>
