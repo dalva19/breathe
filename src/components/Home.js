@@ -5,6 +5,7 @@ import { loadRandomDog } from "../actions/dog_action";
 import { Link } from "react-router-dom";
 //components
 import Header from "./Header";
+import Timer from "./Timer";
 //style
 import styled from "styled-components";
 
@@ -17,6 +18,7 @@ const Home = () => {
 
   //local state
   const [input, setInput] = useState("");
+  const hrsMinsSecs = { hours: 0, minutes: 5, seconds: 0 };
 
   useEffect(() => {
     dispatch(loadDailyQuote(quotes));
@@ -26,6 +28,7 @@ const Home = () => {
   const handleBreatheButton = () => {
     dispatch(loadRandomDog());
     dispatch(loadRatingQuote(ratingQuotes, parseInt(input)));
+
     setInput("");
   };
 
@@ -42,6 +45,9 @@ const Home = () => {
           onChange={(e) => setInput(e.target.value)}
         ></input>
         <br></br>
+
+        <Timer hrsMinsSecs={hrsMinsSecs} />
+
         <Link to="/breathe">
           <button onClick={handleBreatheButton}>Just Breathe</button>
         </Link>
