@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadDailyQuote, loadRatingQuote } from "../actions/daily_quote_action";
 import { loadRandomDog } from "../actions/dog_action";
+import { load30Sec, load1Min, load2Min } from "../actions/timer_action";
 import { Link } from "react-router-dom";
 //components
 import Header from "./Header";
@@ -15,10 +16,15 @@ const Home = () => {
   const { quotes, randomQuote, ratingQuotes } = useSelector(
     (state) => state.dailyQuote
   );
+  const { hours, minutes, seconds, loaded } = useSelector(
+    (state) => state.timer
+  );
 
   //local state
   const [input, setInput] = useState("");
-  const hrsMinsSecs = { hours: 0, minutes: 5, seconds: 0 };
+  let hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
+  //const [timer, setTimer] = useState("");
+  //let hrsMinsSecs;
 
   useEffect(() => {
     dispatch(loadDailyQuote(quotes));
@@ -28,8 +34,22 @@ const Home = () => {
   const handleBreatheButton = () => {
     dispatch(loadRandomDog());
     dispatch(loadRatingQuote(ratingQuotes, parseInt(input)));
-
     setInput("");
+  };
+
+  const handle30SecTimeButtonClick = () => {
+    dispatch(load30Sec());
+    hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
+  };
+
+  const handle1MinTimeButtonClick = () => {
+    dispatch(load1Min());
+    hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
+  };
+
+  const handle2MinTimeButtonClick = () => {
+    dispatch(load2Min());
+    hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
   };
 
   return (
@@ -44,9 +64,12 @@ const Home = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         ></input>
-        <br></br>
 
-        <Timer hrsMinsSecs={hrsMinsSecs} />
+        <button onClick={handle30SecTimeButtonClick}>00:30</button>
+        <button onClick={handle1MinTimeButtonClick}>01:00</button>
+        <button onClick={handle2MinTimeButtonClick}>02:00</button>
+
+        {loaded && <Timer hrsMinsSecs={hrsMinsSecs} />}
 
         <Link to="/breathe">
           <button onClick={handleBreatheButton}>Just Breathe</button>
@@ -57,7 +80,10 @@ const Home = () => {
 };
 
 const StyledDailyQuote = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   margin-top: 4rem;
   font-family: "lato", sans-serif;
   input {

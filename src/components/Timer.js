@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+//style
+import styled from "styled-components";
 
 const Timer = ({ hrsMinsSecs }) => {
   const { hours = 0, minutes = 0, seconds = 0 } = hrsMinsSecs;
@@ -21,12 +23,17 @@ const Timer = ({ hrsMinsSecs }) => {
   };
 
   return (
-    <div>
+    <StyledTimer>
       <h1>{`${hrs.toString().padStart(2, "0")}:${mins
         .toString()
         .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`}</h1>
-    </div>
+    </StyledTimer>
   );
 };
+
+const StyledTimer = styled.div`
+  font-size: 2rem;
+  padding-top: 1rem;
+`;
 
 export default Timer;
