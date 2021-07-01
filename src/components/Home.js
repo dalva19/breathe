@@ -48,8 +48,13 @@ const Home = () => {
     <div>
       <Header />
       <StyledDailyQuote>
-        <p>{randomQuote.q}</p>
+        <p>"{randomQuote.q}"</p>
         <p>-{randomQuote.a}</p>
+
+        <p className="breathing-instruction">
+          Pick an amount of <span>time</span> to catch your breath and become
+          centered.
+        </p>
 
         <br></br>
         <br></br>
@@ -114,8 +119,14 @@ const StyledDailyQuote = styled.div`
     margin-top: 3rem;
   }
 
-  .selected {
-    background-color: green;
+  .breathing-instruction {
+    font-size: 22px;
+    font-family: "Lobster", cursive;
+    margin-top: 2rem;
+  }
+
+  span {
+    color: #5dc733;
   }
 `;
 

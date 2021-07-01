@@ -3,7 +3,6 @@ import { loadReset, loadTimerComplete } from "../actions/timer_action";
 import { useDispatch } from "react-redux";
 //style
 import styled from "styled-components";
-import { loadRandomDog } from "../actions/dog_action";
 
 const Timer = ({ hrsMinsSecs }) => {
   const { hours = 0, minutes = 0, seconds = 0 } = hrsMinsSecs;
@@ -38,8 +37,9 @@ const Timer = ({ hrsMinsSecs }) => {
 };
 
 const StyledTimer = styled.div`
-  font-size: 2rem;
+  font-size: 4rem;
   padding-top: 1rem;
+  min-height: 25vh;
 `;
 
 export default Timer;

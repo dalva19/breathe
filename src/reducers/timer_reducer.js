@@ -12,6 +12,7 @@ const initialState = {
   seconds: 0,
   isLoaded: false,
   complete: false,
+  audio: "https://freesound.org/data/previews/91/91926_7037-lq.mp3",
 };
 
 const timerReducer = (state = initialState, action) => {
@@ -19,7 +20,7 @@ const timerReducer = (state = initialState, action) => {
     case SET_30SEC_TIMER:
       return {
         ...state,
-        seconds: 5,
+        seconds: 30,
         isLoaded: true,
       };
     case SET_1MIN_TIMER:

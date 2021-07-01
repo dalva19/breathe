@@ -4,6 +4,7 @@ import { loadReset } from "../actions/timer_action";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import Timer from "./Timer";
+import BoxBreathing from "./Box_Breathing";
 //style
 import styled from "styled-components";
 
@@ -27,7 +28,7 @@ const Breathe = () => {
     "https://freesound.org/data/previews/91/91926_7037-lq.mp3"
   );
 
-  const play = () => {
+  const playDing = () => {
     audio.play();
   };
 
@@ -38,13 +39,17 @@ const Breathe = () => {
         <Link to="/">
           <button onClick={handleBackButtonClick}>Back</button>
         </Link>
+
         {isLoaded && <Timer hrsMinsSecs={hrsMinsSecs} />}
-        {complete && (
+
+        {complete ? (
           <div>
             <StyledDogPic>
               <img src={dog} alt="dog"></img>
             </StyledDogPic>
           </div>
+        ) : (
+          <BoxBreathing />
         )}
       </StyledBreathe>
     </div>
