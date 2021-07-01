@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { loadReset } from "../actions/timer_action";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import Timer from "./Timer";
@@ -7,6 +8,8 @@ import Timer from "./Timer";
 import styled from "styled-components";
 
 const Breathe = () => {
+  const dispatch = useDispatch();
+
   const { loaded, dog } = useSelector((state) => state.dog);
 
   const { hours, minutes, seconds, isloaded } = useSelector(
@@ -15,6 +18,11 @@ const Breathe = () => {
 
   let hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
 
+  //event handlers
+  const handleBackButtonClick = () => {
+    dispatch(loadReset());
+  };
+
   return (
     <div>
       <Header />
@@ -22,7 +30,7 @@ const Breathe = () => {
         {isloaded && <Timer hrsMinsSecs={hrsMinsSecs} />}
         <StyledDogPic>{loaded && <img src={dog} alt="dog"></img>}</StyledDogPic>
         <Link to="/">
-          <button>Back</button>
+          <button onClick={handleBackButtonClick}>Back</button>
         </Link>
       </StyledBreathe>
     </div>

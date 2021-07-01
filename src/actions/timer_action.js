@@ -2,6 +2,7 @@
 export const SET_30SEC_TIMER = "SET_30SEC_TIMER";
 export const SET_1MIN_TIMER = "SET_1MIN_TIMER";
 export const SET_2MIN_TIMER = "SET_2MIN_TIMER";
+export const RESET_TIMER = "RESET_TIMER";
 
 //action creator
 export const load30Sec = () => {
@@ -19,5 +20,11 @@ export const load1Min = () => {
 export const load2Min = () => {
   return {
     type: SET_2MIN_TIMER,
+  };
+};
+
+export const loadReset = () => {
+  return {
+    type: RESET_TIMER,
   };
 };

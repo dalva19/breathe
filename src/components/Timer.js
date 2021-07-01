@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { loadReset } from "../actions/timer_action";
+import { useDispatch } from "react-redux";
 //style
 import styled from "styled-components";
 
@@ -6,9 +8,11 @@ const Timer = ({ hrsMinsSecs }) => {
   const { hours = 0, minutes = 0, seconds = 0 } = hrsMinsSecs;
   const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
 
+  const dispatch = useDispatch();
+
   const tick = () => {
     if (hrs === 0 && (mins === 0) & (secs === 0)) {
-      alert("yay");
+      dispatch(loadReset());
     } else if (mins === 0 && secs === 0) {
       setTime([hrs - 1, 59, 59]);
     } else if (secs === 0) {
@@ -16,10 +20,6 @@ const Timer = ({ hrsMinsSecs }) => {
     } else {
       setTime([hrs, mins, secs - 1]);
     }
-  };
-
-  const reset = () => {
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
   };
 
   useEffect(() => {

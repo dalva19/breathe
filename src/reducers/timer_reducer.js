@@ -2,6 +2,7 @@ import {
   SET_30SEC_TIMER,
   SET_1MIN_TIMER,
   SET_2MIN_TIMER,
+  RESET_TIMER,
 } from "../actions/timer_action";
 
 const initialState = {
@@ -33,6 +34,8 @@ const timerReducer = (state = initialState, action) => {
         minutes: 2,
         isloaded: true,
       };
+    case RESET_TIMER:
+      return initialState;
     default:
       return state;
   }

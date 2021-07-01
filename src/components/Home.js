@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loadDailyQuote, loadRatingQuote } from "../actions/daily_quote_action";
+import { loadDailyQuote } from "../actions/daily_quote_action";
 import { loadRandomDog } from "../actions/dog_action";
 import { load30Sec, load1Min, load2Min } from "../actions/timer_action";
 import { Link } from "react-router-dom";
@@ -12,16 +12,10 @@ import styled from "styled-components";
 const Home = () => {
   //redux
   const dispatch = useDispatch();
-  const { quotes, randomQuote, ratingQuotes } = useSelector(
-    (state) => state.dailyQuote
-  );
+  const { quotes, randomQuote } = useSelector((state) => state.dailyQuote);
 
-  const { hours, minutes, seconds, loaded } = useSelector(
-    (state) => state.timer
-  );
+  const { hours, minutes, seconds } = useSelector((state) => state.timer);
 
-  //local state
-  const [input, setInput] = useState("");
   let hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
 
   useEffect(() => {
@@ -31,8 +25,6 @@ const Home = () => {
   //event handlers
   const handleBreatheButton = () => {
     dispatch(loadRandomDog());
-    dispatch(loadRatingQuote(ratingQuotes, parseInt(input)));
-    setInput("");
   };
 
   const handle30SecTimeButtonClick = () => {
@@ -56,12 +48,6 @@ const Home = () => {
       <StyledDailyQuote>
         <p>{randomQuote.q}</p>
         <p>-{randomQuote.a}</p>
-        <input
-          type="text"
-          placeholder="Rate your day from 0-10"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        ></input>
 
         <button onClick={handle30SecTimeButtonClick}>00:30</button>
         <button onClick={handle1MinTimeButtonClick}>01:00</button>
