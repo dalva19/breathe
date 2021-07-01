@@ -8,7 +8,7 @@ const Timer = ({ hrsMinsSecs }) => {
 
   const tick = () => {
     if (hrs === 0 && (mins === 0) & (secs === 0)) {
-      reset();
+      alert("yay");
     } else if (mins === 0 && secs === 0) {
       setTime([hrs - 1, 59, 59]);
     } else if (secs === 0) {
@@ -21,6 +21,11 @@ const Timer = ({ hrsMinsSecs }) => {
   const reset = () => {
     setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
   };
+
+  useEffect(() => {
+    const timerId = setInterval(() => tick(), 1000);
+    return () => clearInterval(timerId);
+  });
 
   return (
     <StyledTimer>

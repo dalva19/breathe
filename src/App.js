@@ -1,7 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
-import RatingQuote from "./components/RatingQuote";
-import DogPic from "./components/DogPic";
+import Breathe from "./components/Breathe";
 import GlobalStyle from "./GlobalStyle";
 
 const App = () => {
@@ -14,7 +13,7 @@ const App = () => {
         </Route>
 
         <Route path="/breathe">
-          <RatingQuote />
+          <Breathe />
         </Route>
       </Switch>
     </div>

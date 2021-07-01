@@ -6,7 +6,6 @@ import { load30Sec, load1Min, load2Min } from "../actions/timer_action";
 import { Link } from "react-router-dom";
 //components
 import Header from "./Header";
-import Timer from "./Timer";
 //style
 import styled from "styled-components";
 
@@ -16,6 +15,7 @@ const Home = () => {
   const { quotes, randomQuote, ratingQuotes } = useSelector(
     (state) => state.dailyQuote
   );
+
   const { hours, minutes, seconds, loaded } = useSelector(
     (state) => state.timer
   );
@@ -23,8 +23,6 @@ const Home = () => {
   //local state
   const [input, setInput] = useState("");
   let hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
-  //const [timer, setTimer] = useState("");
-  //let hrsMinsSecs;
 
   useEffect(() => {
     dispatch(loadDailyQuote(quotes));
@@ -68,8 +66,6 @@ const Home = () => {
         <button onClick={handle30SecTimeButtonClick}>00:30</button>
         <button onClick={handle1MinTimeButtonClick}>01:00</button>
         <button onClick={handle2MinTimeButtonClick}>02:00</button>
-
-        {loaded && <Timer hrsMinsSecs={hrsMinsSecs} />}
 
         <Link to="/breathe">
           <button onClick={handleBreatheButton}>Just Breathe</button>

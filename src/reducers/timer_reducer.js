@@ -8,7 +8,7 @@ const initialState = {
   hours: 0,
   minutes: 0,
   seconds: 0,
-  loaded: false,
+  isloaded: false,
 };
 
 const timerReducer = (state = initialState, action) => {
@@ -19,19 +19,19 @@ const timerReducer = (state = initialState, action) => {
         hours: 0,
         minutes: 0,
         seconds: 30,
-        loaded: true,
+        isloaded: true,
       };
     case SET_1MIN_TIMER:
       return {
         ...state,
         minutes: 1,
-        loaded: true,
+        isloaded: true,
       };
     case SET_2MIN_TIMER:
       return {
         ...state,
         minutes: 2,
-        loaded: true,
+        isloaded: true,
       };
     default:
       return state;

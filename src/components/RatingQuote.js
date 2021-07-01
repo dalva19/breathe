@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 //components
 import Header from "./Header";
-import DogPic from "./DogPic";
+import DogPic from "./Breathe";
 //style
 import styled from "styled-components";
 
