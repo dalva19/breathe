@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { loadReset } from "../actions/timer_action";
+import { loadReset, loadTimerComplete } from "../actions/timer_action";
 import { useDispatch } from "react-redux";
 //style
 import styled from "styled-components";
+import { loadRandomDog } from "../actions/dog_action";
 
 const Timer = ({ hrsMinsSecs }) => {
   const { hours = 0, minutes = 0, seconds = 0 } = hrsMinsSecs;
@@ -12,7 +13,7 @@ const Timer = ({ hrsMinsSecs }) => {
 
   const tick = () => {
     if (hrs === 0 && (mins === 0) & (secs === 0)) {
-      dispatch(loadReset());
+      dispatch(loadTimerComplete());
     } else if (mins === 0 && secs === 0) {
       setTime([hrs - 1, 59, 59]);
     } else if (secs === 0) {

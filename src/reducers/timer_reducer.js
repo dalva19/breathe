@@ -3,13 +3,15 @@ import {
   SET_1MIN_TIMER,
   SET_2MIN_TIMER,
   RESET_TIMER,
+  TIMER_COMPLETE,
 } from "../actions/timer_action";
 
 const initialState = {
   hours: 0,
   minutes: 0,
   seconds: 0,
-  isloaded: false,
+  isLoaded: false,
+  complete: false,
 };
 
 const timerReducer = (state = initialState, action) => {
@@ -17,22 +19,25 @@ const timerReducer = (state = initialState, action) => {
     case SET_30SEC_TIMER:
       return {
         ...state,
-        hours: 0,
-        minutes: 0,
-        seconds: 30,
-        isloaded: true,
+        seconds: 5,
+        isLoaded: true,
       };
     case SET_1MIN_TIMER:
       return {
         ...state,
         minutes: 1,
-        isloaded: true,
+        isLoaded: true,
       };
     case SET_2MIN_TIMER:
       return {
         ...state,
         minutes: 2,
-        isloaded: true,
+        isLoaded: true,
+      };
+    case TIMER_COMPLETE:
+      return {
+        ...state,
+        complete: true,
       };
     case RESET_TIMER:
       return initialState;

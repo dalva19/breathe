@@ -14,7 +14,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const { quotes, randomQuote } = useSelector((state) => state.dailyQuote);
 
-  const { hours, minutes, seconds } = useSelector((state) => state.timer);
+  const { hours, minutes, seconds, isLoaded } = useSelector(
+    (state) => state.timer
+  );
 
   let hrsMinsSecs = { hours: hours, minutes: minutes, seconds: seconds };
 
@@ -49,12 +51,42 @@ const Home = () => {
         <p>{randomQuote.q}</p>
         <p>-{randomQuote.a}</p>
 
-        <button onClick={handle30SecTimeButtonClick}>00:30</button>
-        <button onClick={handle1MinTimeButtonClick}>01:00</button>
-        <button onClick={handle2MinTimeButtonClick}>02:00</button>
+        <br></br>
+        <br></br>
+
+        <button
+          onClick={handle30SecTimeButtonClick}
+          style={
+            seconds ? { background: "#5DC733" } : { background: "#1b1b1b" }
+          }
+        >
+          00:30
+        </button>
+        <button
+          onClick={handle1MinTimeButtonClick}
+          style={
+            minutes === 1
+              ? { background: "#5DC733" }
+              : { background: "#1b1b1b" }
+          }
+        >
+          01:00
+        </button>
+        <button
+          onClick={handle2MinTimeButtonClick}
+          style={
+            minutes === 2
+              ? { background: "#5DC733" }
+              : { background: "#1b1b1b" }
+          }
+        >
+          02:00
+        </button>
 
         <Link to="/breathe">
-          <button onClick={handleBreatheButton}>Just Breathe</button>
+          <button onClick={handleBreatheButton} className="breathe-button">
+            Just Breathe
+          </button>
         </Link>
       </StyledDailyQuote>
     </div>
@@ -68,24 +100,22 @@ const StyledDailyQuote = styled.div`
   flex-direction: column;
   margin-top: 4rem;
   font-family: "lato", sans-serif;
-  input {
-    width: 30%;
-    font-size: 1rem;
-    font-weight: bold;
-    font-family: "lato", sans-serif;
-    padding: 0.5rem;
-    border: none;
-    margin-top: 3rem;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
-  }
+
   button {
     font-size: 1rem;
     border: none;
     margin-top: 1rem;
     padding: 0.5rem 2rem;
     cursor: pointer;
-    background: #1b1b1b;
     color: white;
+  }
+
+  .breathe-button {
+    margin-top: 3rem;
+  }
+
+  .selected {
+    background-color: green;
   }
 `;
 

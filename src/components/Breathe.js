@@ -12,7 +12,7 @@ const Breathe = () => {
 
   const { loaded, dog } = useSelector((state) => state.dog);
 
-  const { hours, minutes, seconds, isloaded } = useSelector(
+  const { hours, minutes, seconds, isLoaded, complete } = useSelector(
     (state) => state.timer
   );
 
@@ -23,15 +23,29 @@ const Breathe = () => {
     dispatch(loadReset());
   };
 
+  const audio = new Audio(
+    "https://freesound.org/data/previews/91/91926_7037-lq.mp3"
+  );
+
+  const play = () => {
+    audio.play();
+  };
+
   return (
     <div>
       <Header />
       <StyledBreathe>
-        {isloaded && <Timer hrsMinsSecs={hrsMinsSecs} />}
-        <StyledDogPic>{loaded && <img src={dog} alt="dog"></img>}</StyledDogPic>
         <Link to="/">
           <button onClick={handleBackButtonClick}>Back</button>
         </Link>
+        {isLoaded && <Timer hrsMinsSecs={hrsMinsSecs} />}
+        {complete && (
+          <div>
+            <StyledDogPic>
+              <img src={dog} alt="dog"></img>
+            </StyledDogPic>
+          </div>
+        )}
       </StyledBreathe>
     </div>
   );
